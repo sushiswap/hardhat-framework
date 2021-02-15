@@ -1,0 +1,19 @@
+{
+  "name": "@sushiswap/hardhat-framework",
+  "version": "1.0.0",
+  "description": "Common test utilities for hardhat development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushiswap/hardhat-framework.git"
+  },
+  "author": "BoringCrypto, Keno, I'm Software",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sushiswap/hardhat-framework/issues"
+  },
+  "homepage": "https://github.com/sushiswap/hardhat-framework#readme"
+}
