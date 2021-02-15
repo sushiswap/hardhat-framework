@@ -168,7 +168,7 @@ const ACTION_PERMIT = 30
 const ACTION_GET_REPAY_SHARE = 40
 const ACTION_GET_REPAY_PART = 41
 
-class LendingPair {
+class KashiPair {
     constructor(contract, helper) {
         this.contract = contract
         this.helper = helper
@@ -183,7 +183,7 @@ class LendingPair {
     }
 
     as(from) {
-        let connectedPair = new LendingPair(this.contract.connect(from))
+        let connectedPair = new KashiPair(this.contract.connect(from))
         connectedPair.bentoBox = this.bentoBox.connect(from)
         connectedPair.helper = this.helper
         connectedPair.asset = this.asset.connect(from)
@@ -195,7 +195,7 @@ class LendingPair {
     async run(commandsFunction) {
         const commands = commandsFunction(this.cmd)
         for (let i = 0; i < commands.length; i++) {
-            if (typeof commands[i] == "object" && commands[i].type == "LendingPairCmd") {
+            if (typeof commands[i] == "object" && commands[i].type == "KashiPairCmd") {
                 //console.log("RUN CMD: ", commands[i].method, commands[i].params, commands[i].as ? commands[i].as.address : "")
                 let pair = commands[i].pair
                 if (commands[i].as) {
@@ -204,7 +204,7 @@ class LendingPair {
                 let tx = await pair[commands[i].method](...commands[i].params)
                 let receipt = await tx.wait()
                 //console.log("Gas used: ", receipt.gasUsed.toString());
-            } else if (typeof commands[i] == "object" && commands[i].type == "LendingPairDo") {
+            } else if (typeof commands[i] == "object" && commands[i].type == "KashiPairDo") {
                 //console.log("RUN DO: ", commands[i].method, commands[i].params)
                 await commands[i].method(...commands[i].params)
             } else {
@@ -423,7 +423,7 @@ class LendingPair {
     }
 }
 
-Object.defineProperty(LendingPair.prototype, "cmd", {
+Object.defineProperty(KashiPair.prototype, "cmd", {
     get: function () {
         function proxy(pair, as) {
             return new Proxy(pair, {
@@ -431,7 +431,7 @@ Object.defineProperty(LendingPair.prototype, "cmd", {
                     return function (...params) {
                         if (method == "do") {
                             return {
-                                type: "LendingPairDo",
+                                type: "KashiPairDo",
                                 method: params[0],
                                 params: params.slice(1),
                             }
@@ -440,7 +440,7 @@ Object.defineProperty(LendingPair.prototype, "cmd", {
                             return proxy(pair, params[0])
                         }
                         return {
-                            type: "LendingPairCmd",
+                            type: "KashiPairCmd",
                             pair: target,
                             method: method,
                             params: params,
@@ -455,17 +455,17 @@ Object.defineProperty(LendingPair.prototype, "cmd", {
     },
 })
 
-LendingPair.deploy = async function (bentoBox, masterContract, masterContractClass, asset, collateral, oracle, oracleData) {
+KashiPair.deploy = async function (bentoBox, masterContract, masterContractClass, asset, collateral, oracle, oracleData) {
     const initData = await masterContract.getInitData(addr(asset), addr(collateral), addr(oracle), oracleData)
     const deployTx = await bentoBox.deploy(masterContract.address, initData, true)
     const pair = await masterContractClass.attach((await deployTx.wait()).events[1].args.cloneAddress)
     await pair.updateExchangeRate()
-    const pairHelper = new LendingPair(pair)
+    const pairHelper = new KashiPair(pair)
     pairHelper.initData = initData
     await pairHelper.init(bentoBox)
     return pairHelper
 }
 
 module.exports = {
-    LendingPair,
+    KashiPair,
 }
