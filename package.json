@@ -1,6 +1,6 @@
 {
   "name": "@sushiswap/hardhat-framework",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Common test utilities for hardhat development",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,21 @@
   },
   "homepage": "https://github.com/sushiswap/hardhat-framework#readme",
   "dependencies": {
-    "solidity-coverage": "^0.7.14"    
+    "@nomiclabs/hardhat-ethers": "^2.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@sushiswap/core": "^1.4.2",
+    "@sushiswap/hardhat-framework": "sushiswap/hardhat-framework",
+    "chai": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "ethereum-waffle": "^3.2.2",
+    "ethers": "^5.0.31",
+    "hardhat": "^2.0.10",
+    "hardhat-gas-reporter": "^1.0.4",
+    "husky": "^5.0.9",
+    "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.5",
+    "pretty-quick": "^3.1.0",
+    "solc": "0.6.12",    
+    "solidity-coverage": "^0.7.14"
   }
 }
