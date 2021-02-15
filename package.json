@@ -1,6 +1,6 @@
 {
   "name": "@sushiswap/hardhat-framework",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Common test utilities for hardhat development",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sushiswap/hardhat-framework/issues"
   },
-  "homepage": "https://github.com/sushiswap/hardhat-framework#readme"
+  "homepage": "https://github.com/sushiswap/hardhat-framework#readme",
+  "dependencies": {
+    "solidity-coverage": "^0.7.14"    
+  }
 }
