@@ -30,6 +30,10 @@ function merge(target, source) {
     return output
 }
 
+const solcover_config = {
+    skipFiles: ["mocks/", "interfaces/"],
+}
+
 function get_hardhat_config() {
     require("@nomiclabs/hardhat-waffle")
     require("hardhat-deploy")
@@ -304,5 +308,6 @@ let prettier_config = {
 module.exports = {
     get_hardhat_config,
     prettier_config,
+    solcover_config,
     merge,
 }
