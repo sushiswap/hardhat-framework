@@ -1,4 +1,4 @@
-const { merge, get_hardhat_config, prettier_config } = require('config')
+const { merge, get_hardhat_config, prettier_config } = require('./config')
 
 const {
     BigNumber,
