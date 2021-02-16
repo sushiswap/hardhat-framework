@@ -1,3 +1,5 @@
+const { merge, get_hardhat_config, prettier_config } = require('config')
+
 const {
     BigNumber,
     utils: { keccak256, defaultAbiCoder, toUtf8Bytes, solidityPack },
@@ -411,4 +413,7 @@ module.exports = {
     decodeLogs,
     weth,
     createFixture,
+    merge, 
+    get_hardhat_config, 
+    prettier_config
 }
