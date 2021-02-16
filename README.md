@@ -6,9 +6,15 @@ This package helps configuring a repo for hardhat development. This is very opin
 All the packages needed are included in this package, so all you need to add in your repo's `package.json` is:
 
 ```
-"devDependencies": {
-    "@sushiswap/hardhat-framework": "sushiswap/hardhat-framework"
-}
+    "scripts": {
+        "test": "hardhat test",
+        "format": "prettier --write contracts/**/*.sol *.js *.json test/**/*.js",
+        "pretty-quick": "pretty-quick",
+        "coverage": "hardhat coverage"
+    },
+    "devDependencies": {
+        "@sushiswap/hardhat-framework": "sushiswap/hardhat-framework"
+    }
 ```
 
 ### Setting up your .env
@@ -21,19 +27,24 @@ To use the defaults defined in hardhat-framework, change or create the following
 
 hardhat.config.js
 ```
-const { get_hardhat_config, merge } = require("@sushiswap/hardhat-framework")
-const { hardhat } = require("./settings")
-module.exports = merge(get_hardhat_config(), hardhat)
+module.exports = require("@sushiswap/hardhat-framework").hardhat_config(require("./settings").hardhat)
 ```
 
 .prettierrc.js
 ```
-const { prettier_config, merge } = require("@sushiswap/hardhat-framework")
-const { prettier } = require("./settings")
-module.exports = merge(prettier_config, prettier)
+module.exports = require("@sushiswap/hardhat-framework").prettier_config(require("./settings").prettier)
 ```
 
 .solcover.js
 ```
+module.exports = require("@sushiswap/hardhat-framework").solcover_config(require("./settings").solcover)
+```
 
+And add a `settings.js` file:
+```
+module.exports = {
+    hardhat: { },
+    solcover: { },
+    prettier: { }
+}
 ```
