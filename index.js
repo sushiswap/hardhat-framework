@@ -1,4 +1,4 @@
-const { merge, get_hardhat_config, prettier_config } = require('./config')
+const { merge, hardhat_config, prettier_config, solcover_config } = require('./config')
 
 const {
     BigNumber,
@@ -414,6 +414,7 @@ module.exports = {
     weth,
     createFixture,
     merge, 
-    get_hardhat_config, 
-    prettier_config
+    hardhat_config, 
+    prettier_config,
+    solcover_config
 }
