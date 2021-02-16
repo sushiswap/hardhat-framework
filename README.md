@@ -20,24 +20,34 @@ All the packages needed are included in this package, so all you need to add in 
 ### Setting up your .env
 You can include your environment variables in a `.env` file in the root of your repo. Alternatively you can set an actual environment variable called `DOTENV_PATH` to point to a central `.env` file to be used. This way you can use the same environment settings accross multiple projects.
 
+Some useful settings:
+```
+ALCHEMY_API_KEY=
+COINMARKETCAP_API_KEY=
+HARDHAT_NETWORK=hardhat
+HARDHAT_MAX_MEMORY=4096
+HARDHAT_SHOW_STACK_TRACES=true
+HARDHAT_VERBOSE=true
+```
+
 ### Use default settings for configuration
 Many settings are pre-defined in hardhat-framework. The following changes import all those settings as well as allow you to make any changes/additions to them in a central settings.js file.
 
 To use the defaults defined in hardhat-framework, change or create the following files:
 
-hardhat.config.js
+**hardhat.config.js**
 ```
-module.exports = require("@sushiswap/hardhat-framework").hardhat_config(require("./settings").hardhat)
-```
-
-.prettierrc.js
-```
-module.exports = require("@sushiswap/hardhat-framework").prettier_config(require("./settings").prettier)
+module.exports = require("@sushiswap/hardhat-framework").config.hardhat(require("./settings").hardhat)
 ```
 
-.solcover.js
+**.prettierrc.js**
 ```
-module.exports = require("@sushiswap/hardhat-framework").solcover_config(require("./settings").solcover)
+module.exports = require("@sushiswap/hardhat-framework").config.prettier(require("./settings").prettier)
+```
+
+**.solcover.js**
+```
+module.exports = require("@sushiswap/hardhat-framework").config.solcover(require("./settings").solcover)
 ```
 
 And add a `settings.js` file:
@@ -48,3 +58,11 @@ module.exports = {
     prettier: { }
 }
 ```
+
+TODO:
+
+- Manage deployments
+- Github hooks
+- Getting husky to work properly (pre-commit in package.json)
+- Integrate Certora
+- Integrate Slither

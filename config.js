@@ -31,13 +31,13 @@ function merge(target, source) {
     return output
 }
 
-function solcover_config(userSettings) {
+function solcover(userSettings) {
     return merge({
         skipFiles: ["mocks/", "interfaces/"],
     }, userSettings)
 }
 
-function hardhat_config(userSettings) {
+function hardhat(userSettings) {
     require("@nomiclabs/hardhat-waffle")
     require("hardhat-deploy")
     require("solidity-coverage")
@@ -271,7 +271,7 @@ function hardhat_config(userSettings) {
     }, userSettings)
 }
 
-function prettier_config(userSettings) {
+function prettier(userSettings) {
     return merge({
         overrides: [
             {
@@ -311,8 +311,8 @@ function prettier_config(userSettings) {
 }
 
 module.exports = {
-    hardhat_config,
-    prettier_config,
-    solcover_config,
+    hardhat,
+    prettier,
+    solcover,
     merge,
 }
