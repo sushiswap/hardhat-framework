@@ -14,6 +14,7 @@ function isArray(item) {
 }
 
 function merge(target, source) {
+    if (!source) { return target }
     let output = Object.assign({}, target)
     if (isObject(target) && isObject(source)) {
         Object.keys(source).forEach((key) => {
@@ -30,11 +31,13 @@ function merge(target, source) {
     return output
 }
 
-const solcover_config = {
-    skipFiles: ["mocks/", "interfaces/"],
+function solcover_config(userSettings) {
+    return merge({
+        skipFiles: ["mocks/", "interfaces/"],
+    }, userSettings)
 }
 
-function get_hardhat_config() {
+function hardhat_config(userSettings) {
     require("@nomiclabs/hardhat-waffle")
     require("hardhat-deploy")
     require("solidity-coverage")
@@ -236,7 +239,7 @@ function get_hardhat_config() {
         },
     }
 
-    return {
+    return merge({
         defaultNetwork: "hardhat",
         namedAccounts: {},
         gasReporter: {
@@ -265,48 +268,50 @@ function get_hardhat_config() {
                 },
             },
         },
-    }
+    }, userSettings)
 }
 
-let prettier_config = {
-    overrides: [
-        {
-            files: "*.sol",
-            options: {
-                bracketSpacing: false,
-                printWidth: 145,
-                tabWidth: 4,
-                useTabs: false,
-                singleQuote: false,
-                explicitTypes: "always",
-                endOfLine: "lf",
+function prettier_config(userSettings) {
+    return merge({
+        overrides: [
+            {
+                files: "*.sol",
+                options: {
+                    bracketSpacing: false,
+                    printWidth: 145,
+                    tabWidth: 4,
+                    useTabs: false,
+                    singleQuote: false,
+                    explicitTypes: "always",
+                    endOfLine: "lf",
+                },
             },
-        },
-        {
-            files: "*.js",
-            options: {
-                printWidth: 145,
-                semi: false,
-                trailingComma: "es5",
-                tabWidth: 4,
-                endOfLine: "lf",
+            {
+                files: "*.js",
+                options: {
+                    printWidth: 145,
+                    semi: false,
+                    trailingComma: "es5",
+                    tabWidth: 4,
+                    endOfLine: "lf",
+                },
             },
-        },
-        {
-            files: "*.json",
-            options: {
-                printWidth: 145,
-                semi: false,
-                trailingComma: "es5",
-                tabWidth: 4,
-                endOfLine: "lf",
+            {
+                files: "*.json",
+                options: {
+                    printWidth: 145,
+                    semi: false,
+                    trailingComma: "es5",
+                    tabWidth: 4,
+                    endOfLine: "lf",
+                },
             },
-        },
-    ],
+        ],
+    }, userSettings)
 }
 
 module.exports = {
-    get_hardhat_config,
+    hardhat_config,
     prettier_config,
     solcover_config,
     merge,
