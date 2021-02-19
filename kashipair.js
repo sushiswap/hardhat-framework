@@ -464,7 +464,7 @@ Object.defineProperty(KashiPair.prototype, "cmd", {
 KashiPair.deploy = async function (bentoBox, masterContract, masterContractClass, asset, collateral, oracle, oracleData) {
     const initData = await masterContract.getInitData(addr(asset), addr(collateral), addr(oracle), oracleData)
     const deployTx = await bentoBox.deploy(masterContract.address, initData, true)
-    const pair = await masterContractClass.attach((await deployTx.wait()).events[1].args.cloneAddress)
+    const pair = await masterContractClass.attach((await deployTx.wait()).events[0].args.cloneAddress)
     await pair.updateExchangeRate()
     const pairHelper = new KashiPair(pair)
     pairHelper.initData = initData
