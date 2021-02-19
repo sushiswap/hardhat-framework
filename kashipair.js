@@ -152,21 +152,27 @@ const ERC20abi = [
     },
 ]
 
-const ACTION_ADD_COLLATERAL = 1
-const ACTION_ADD_ASSET = 2
-const ACTION_REPAY = 3
-const ACTION_REMOVE_ASSET = 4
-const ACTION_REMOVE_COLLATERAL = 5
-const ACTION_BORROW = 6
-const ACTION_CALL = 10
-const ACTION_BENTO_DEPOSIT = 20
-const ACTION_BENTO_WITHDRAW = 21
-const ACTION_BENTO_TRANSFER = 22
-const ACTION_BENTO_TRANSFER_MULTIPLE = 23
-const ACTION_BENTO_SETAPPROVAL = 24
-const ACTION_PERMIT = 30
-const ACTION_GET_REPAY_SHARE = 40
-const ACTION_GET_REPAY_PART = 41
+// Functions that need accrue to be called
+const ACTION_ADD_ASSET = 1;
+const ACTION_REPAY = 2;
+const ACTION_REMOVE_ASSET = 3;
+const ACTION_REMOVE_COLLATERAL = 4;
+const ACTION_BORROW = 5;
+const ACTION_GET_REPAY_SHARE = 6;
+const ACTION_GET_REPAY_PART = 7;
+
+// Functions that don't need accrue to be called
+const ACTION_ADD_COLLATERAL = 10;
+
+// Function on BentoBox
+const ACTION_BENTO_DEPOSIT = 20;
+const ACTION_BENTO_WITHDRAW = 21;
+const ACTION_BENTO_TRANSFER = 22;
+const ACTION_BENTO_TRANSFER_MULTIPLE = 23;
+const ACTION_BENTO_SETAPPROVAL = 24;
+
+// Any external call (except to BentoBox)
+const ACTION_CALL = 30;
 
 class KashiPair {
     constructor(contract, helper) {
