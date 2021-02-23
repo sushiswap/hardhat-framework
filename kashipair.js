@@ -373,19 +373,19 @@ class KashiPair {
         )
     }
 
-    short(swapper, share, minAmount) {
+    short(swapper, amount, minReturnedShare) {
         let data = swapper.interface.encodeFunctionData("swap", [
             this.asset.address,
             this.collateral.address,
             addr(this.contract.signer),
-            minAmount,
+            minReturnedShare,
             "0",
         ])
         return this.contract.cook(
             [ACTION_BORROW, ACTION_BENTO_TRANSFER, ACTION_CALL, ACTION_ADD_COLLATERAL],
             [0, 0, 0, 0, 0],
             [
-                defaultAbiCoder.encode(["int256", "address"], [share, addr(this.contract.signer)]),
+                defaultAbiCoder.encode(["int256", "address"], [amount, addr(this.contract.signer)]),
                 defaultAbiCoder.encode(["address", "address", "int256"], [this.asset.address, swapper.address, -2]),
                 defaultAbiCoder.encode(["address", "bytes", "bool", "bool", "uint8"], [swapper.address, data.slice(0, -64), false, true, 2]),
                 defaultAbiCoder.encode(["int256", "address", "bool"], [-2, addr(this.contract.signer), false]),
