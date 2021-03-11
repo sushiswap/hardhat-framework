@@ -260,13 +260,17 @@ function hardhat(userSettings) {
             tests: "test",
         },
         solidity: {
-            version: "0.6.12",
-            settings: {
-                optimizer: {
-                    enabled: true,
-                    runs: 500,
+            compilers: [
+                {
+                    version: "0.6.12",
+                    settings: {
+                        optimizer: {
+                            enabled: true,
+                            runs: 200,
+                        },
+                    },
                 },
-            },
+            ]            
         },
     }, userSettings)
 }
