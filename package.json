@@ -1,6 +1,6 @@
 {
   "name": "@sushiswap/hardhat-framework",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Common test utilities for hardhat development",
   "main": "index.js",
   "scripts": {
