@@ -208,6 +208,7 @@ function weth(chainId) {
         88: "0xB1f66997A5760428D3a87D68b90BfE0aE64121cC", // TomoChain
         89: "0xB837c744A16A7f133A750254270Dce792dBBAE77", // TomoChain Testnet
         97: "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd", // Binance Testnet
+        100: "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d", // xDAI
         128: "0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f", // Huobi ECO Chain
         137: "0x084666322d3ee89aAbDBBCd084323c9AF705C7f5", // Matic
         250: "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83", // Fantom
@@ -233,6 +234,7 @@ function nativeTokenSymbol(chainId) {
         88: "TOMO", //TomoChain
         89: "TOMO", // TomoChain Testnet
         97: "BNB", // Binance Testnet
+        100: "XDAI", // xDAI
         128: "HT", // Huobi ECO Chain
         137: "MATIC", // Matic
         250: "FTM", // Fantom
@@ -257,6 +259,7 @@ function explorer(chainId) {
         88: "https://scan.tomochain.com", //TomoChain
         89: "https://scan.testnet.tomochain.com", // TomoChain Testnet
         97: "https://testnet.bscscan.com", // Binance Testnet
+        100: "https://blockscout.com/poa/xdai", // xDAI
         128: "https://hecoinfo.com", // Huobi ECO Chain
         137: "https://explorer-mainnet.maticvigil.com", // Matic
         250: "https://ftmscan.com", // Fantom
