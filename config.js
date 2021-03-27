@@ -264,6 +264,9 @@ function hardhat(userSettings) {
                 {
                     version: "0.6.12",
                     settings: {
+                          metadata: {
+                             bytecodeHash: "none",
+                          },
                         optimizer: {
                             enabled: true,
                             runs: 200,
