@@ -1312,5 +1312,17 @@ module.exports = {
             faucets: ["https://faucet.joys.digital/"],
             infoURL: "https://joys.digital",
         },
+        {
+            name: "Aurora",
+            chainId: 1313161554,
+            shortName: "aurora",
+            chain: "Aurora",
+            network: "mainnet",
+            networkId: 1313161554,
+            nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+            rpc: ["https://mainnet.aurora.dev"],
+            faucets: [],
+            infoURL: "https://aurora.dev/",
+        },
     ],
 }

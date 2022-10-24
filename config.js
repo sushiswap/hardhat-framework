@@ -237,6 +237,13 @@ function hardhat(userSettings) {
             saveDeployments: true,
             tags: ["staging"],
         },
+        aurora: {
+            url: "https://mainnet.aurora.dev",
+            accounts,
+            chainId: 1313161554,
+            live: true,
+            saveDeployments: true,
+        },
     }
 
     return merge({
@@ -270,7 +277,7 @@ function hardhat(userSettings) {
                         },
                     },
                 },
-            ]            
+            ]
         },
     }, userSettings)
 }
